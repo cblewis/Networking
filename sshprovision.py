@@ -7,7 +7,8 @@ import time
 
 #Specify the device type:
 ciena = {
-    "host": "10.0.0.121",
+    "host": input("IP: "),
+    #"host": "10.0.0.92",
     "username": input("Username: "),
     "password": getpass(),
     "device_type": "ciena_saos",
@@ -34,7 +35,7 @@ with open(filepath, 'r') as f:
         output = net_connect.send_command(line)
         print(output)
         print()
-        time.sleep(10)
+        time.sleep(4)
 f.close()
 
 #Logout from the SSH connection.
