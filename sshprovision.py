@@ -15,7 +15,7 @@ ciena = {
 }
 '''
 mrv = {
-    "host": "192.168.1.14", #10.0.0.139
+    "host": input("IP: "),
     "username": input("Username: "),
     "password": getpass(),
     "device_type": "mrv_optiswitch",
@@ -32,18 +32,15 @@ with open(filepath, 'r') as f:
     for line in configLines:
         print(net_connect.find_prompt())
         print(line)
-        output = net_connect.send_command(line)
+        output = net_connect.send_command(line, expect_string=r'>')
         print(output)
-        print()
-        time.sleep(4)
+        #time.sleep(4)
 f.close()
 
 #Logout from the SSH connection.
 command = 'exit'
-print()
 print(net_connect.find_prompt())
 output = net_connect.send_command(command)
 print(output)
-print()
 net_connect.disconnect()
 exit
