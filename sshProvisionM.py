@@ -15,7 +15,7 @@ mrv = {
 }
 
 confip = input("172.22.6.X address to be assigned to this device: ")
-enablepass = input("Enable password: ")
+#enablepass = input("Enable password: ")
 print('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
 
 #Specify the device type here too:
@@ -27,7 +27,8 @@ print(login)
 if r"Password" in login:
     try:
         print(net_connect.find_prompt())
-        output = net_connect.send_command(enablepass + r"\\n")
+        #output = net_connect.send_command(enablepass + r"\\n")
+        output = net_connect.send_command("jobbob" + r"\\n")
         print(output)
     except:
         raise
@@ -37,7 +38,8 @@ elif r">" in login:
         output = net_connect.send_command("enable", expect_string=r'>')
         print(output)
         print(net_connect.find_prompt())
-        output = net_connect.send_command(enablepass + r"\\n")
+        #output = net_connect.send_command(enablepass + r"\\n")
+        output = net_connect.send_command("jobbob" + r"\\n")
         print(output)
     except:
         raise
@@ -61,16 +63,17 @@ with open(filepath, 'r') as f:
 f.close()
 
 #Configure new MGMT IP on device
+mgmtcommand = "ip " + confip + "/22"
 print(net_connect.find_prompt())
-output = net_connect.send_command("ip " + confip + "/22", expect_string=r'#')
-print("ip " + confip + "/22")
+print(mgmtcommand)
+output = net_connect.send_command(mgmtcommand, expect_string=r'#')
 print(output)
 
 #Save Changes
 savemem = "wr mem"
 print(net_connect.find_prompt())
-output = net_connect.send_command(savemem, expect_string=r'#')
 print(savemem)
+output = net_connect.send_command(savemem, expect_string=r'#')
 print(output)
 
 #Logout from the SSH connection.
