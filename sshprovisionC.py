@@ -33,8 +33,8 @@ f.close()
 
 filepath2 = '3930snmp.txt'
 with open(filepath2, 'r') as f2:
-    configLines = f2.readlines()
-    for line in configLines:
+    configLines2 = f2.readlines()
+    for line in configLines2:
         print(net_connect.find_prompt())
         print(line)
         output = net_connect.send_command(line)
