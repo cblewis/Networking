@@ -15,6 +15,14 @@ console = serial.Serial(
     timeout=8
 )
 
+#Specify config script here
+filepath = 'SERIALscript_config_ciena3930.txt'
+
+print("Is " + filepath + " the correct config file that you want to use?")
+option = input("Type yes to continue: ")
+if "yes" or "Yes" or "YES" not in option:
+    exit()
+
 username = input("Username: ")
 password = getpass()
 #need to convert the input of these variables as bytes
@@ -54,18 +62,19 @@ print(input_data)
 
 #if we read as bytes 'rb', then we don't have to concatenate
 #every line in the config with b'line'\n like appendconfig.py
-filepath = 'test.txt'
 with open(filepath, 'rb') as f:
     configLines = f.readlines()
     for line in configLines:
         print(line)
         console.write(line)
-        time.sleep(2)
         #console.write(b'\n')
         input_data = console.read(console.inWaiting())
         print(input_data)
+        time.sleep(1)
 f.close()
 
 console.write(b'exit' + b'\n')
 input_data = console.read(console.inWaiting())
 print(input_data)
+
+exit()
