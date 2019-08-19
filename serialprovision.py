@@ -20,7 +20,7 @@ filepath = 'SERIALscript_config_ciena3930.txt'
 
 print("Is " + filepath + " the correct config file that you want to use?")
 option = input("Type yes to continue: ")
-if "yes" or "Yes" or "YES" not in option:
+if "yes" not in option:
     exit()
 
 username = input("Username: ")
