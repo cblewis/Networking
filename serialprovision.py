@@ -53,6 +53,7 @@ time.sleep(1)
 input_data = console.read(console.inWaiting())
 print(input_data)
 
+print("Please wait for 15 seconds before the configuration begins.")
 time.sleep(14)
 
 console.write(b'\n')
