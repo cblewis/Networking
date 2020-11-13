@@ -13,6 +13,15 @@ with open ('macaddresses.txt', 'r') as macfile:
         newstr = ':'.join(str[i:i+2] for i in range(0, len(str), 2))
         print(newstr)
 
+with open ('macaddresses.txt', 'r') as macfile:
+    for item in macfile:
+        str = item
+        if ':' in str:
+            nocharstring = str.replace(":", "")
+        elif '-' in str:
+            nocharstring = str.replace("-", "")
+        print(nocharstring)
+
 '''
 #If MAC address is formatted with '.':
 str = 'Ffff.ffff.ffff'
